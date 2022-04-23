@@ -1,0 +1,51 @@
+/*
+Assumptions
+- all lower case
+- no numbers
+- no punctuation
+- spaces remain where they are
+- letters in the alphabet should wrap around
+
+*/
+
+// works up until 26
+
+// function caesarCypher(str, num) {
+//     let finalStr = '';
+//     for (let i = 0; i < str.length; i++) {
+//       let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+//       let char = str[i];
+//       if (alphabet.indexOf(char) + num > alphabet.length - 1) {
+//         char = alphabet[alphabet.indexOf(char) - alphabet.length + num]
+//         finalStr += char
+//       } else if (str[i] !== ' ') {
+//           char = alphabet[alphabet.indexOf(char) + num];
+//           finalStr += char;
+//       } else {
+//           finalStr += ' ';
+//         }
+//       }
+//     return finalStr;
+//   }
+
+
+// works no matter the number or string provided
+
+  function caesarCypher(str, num) {
+      let encrypted = ''; 
+      let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] !== ' ') {
+            encrypted += alphabet[(alphabet.indexOf(str[i]) + num) % 26];
+        } else {
+            encrypted += str[i];
+        }
+    }
+    return encrypted;
+}
+
+// examples
+console.log(caesarCypher('doggo',7)); // => 'kvnnv'
+console.log(caesarCypher('a',2)); // => c
+console.log(caesarCypher('hello',13)); // => uryyb
+console.log(caesarCypher('hello world',50)); // fcjjm umpjb
